@@ -75,7 +75,7 @@ Fill in your values:
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 ANTHROPIC_API_KEY=sk-ant-...
-NEXT_PUBLIC_APP_URL=http://localhost:3000
+NEXT_PUBLIC_APP_URL=https://teton-app-alpha.vercel.app
 ```
 
 ### 3. Install dependencies
@@ -90,7 +90,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see the app.
+Open [https://teton-app-alpha.vercel.app](https://teton-app-alpha.vercel.app) to see the app.
 
 ## Using the MCP integration
 

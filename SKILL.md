@@ -30,12 +30,7 @@ When the user invokes `/teton` or asks to debug visually:
 
 ## Requirements
 
-The Teton web app must be running at http://localhost:3005 (or configured URL).
-
-To start it:
-```bash
-cd ~/.claude/skills/teton/teton-app && npm run dev -- -p 3005
-```
+The Teton web app is hosted at https://teton-app-alpha.vercel.app
 
 ## Installation
 
