@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* React Flow overrides */
+.react-flow__node {
+  cursor: grab;
+}
+
+.react-flow__node:active {
+  cursor: grabbing;
+}
+
+.react-flow__handle {
+  width: 8px;
+  height: 8px;
+}
+
+.react-flow__edge-path {
+  stroke: #e5e7eb;
+  stroke-width: 1.5;
+}
+
+/* Selected node styling */
+.react-flow__node.selected > div {
+  box-shadow: 0 0 0 2px #1f2937;
+}

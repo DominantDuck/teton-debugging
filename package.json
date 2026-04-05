@@ -1,0 +1,14 @@
+{
+  "name": "teton-debugging",
+  "private": true,
+  "workspaces": [
+    "teton-app",
+    "teton-mcp"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=teton-app",
+    "build": "npm run build --workspace=teton-app && npm run build --workspace=teton-mcp",
+    "build:app": "npm run build --workspace=teton-app",
+    "build:mcp": "npm run build --workspace=teton-mcp"
+  }
+}
