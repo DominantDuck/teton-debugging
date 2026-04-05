@@ -82,6 +82,51 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
+
+        {/* Setup */}
+        <div className="mt-12 text-left">
+          <h3 className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4">
+            Setup (one-time)
+          </h3>
+
+          <div className="space-y-6">
+            {/* Step 1 */}
+            <div>
+              <p className="text-sm font-medium text-gray-700 mb-2">1. Clone and build</p>
+              <div className="bg-gray-900 rounded-lg px-4 py-3 font-mono text-xs text-gray-300 overflow-x-auto">
+                <div>git clone https://github.com/DominantDuck/teton-debugging.git</div>
+                <div>cd teton-debugging/teton-mcp</div>
+                <div>npm install && npm run build</div>
+              </div>
+            </div>
+
+            {/* Step 2 */}
+            <div>
+              <p className="text-sm font-medium text-gray-700 mb-2">2. Add to ~/.claude.json</p>
+              <div className="bg-gray-900 rounded-lg px-4 py-3 font-mono text-xs text-gray-300 overflow-x-auto">
+                <pre>{`{
+  "mcpServers": {
+    "teton": {
+      "command": "node",
+      "args": ["<PATH>/teton-mcp/dist/index.js"]
+    }
+  }
+}`}</pre>
+              </div>
+              <p className="text-xs text-gray-400 mt-2">
+                Replace &lt;PATH&gt; with your actual path
+              </p>
+            </div>
+
+            {/* Step 3 */}
+            <div>
+              <p className="text-sm font-medium text-gray-700 mb-2">3. Restart Claude Code</p>
+              <div className="bg-gray-900 rounded-lg px-4 py-3 font-mono text-xs text-gray-300">
+                claude
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   )

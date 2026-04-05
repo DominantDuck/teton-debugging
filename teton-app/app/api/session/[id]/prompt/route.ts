@@ -14,7 +14,7 @@ export async function GET(
 
     const { data, error } = await supabase
       .from('sessions')
-      .select('prompt_ready, generated_prompt, cancelled')
+      .select('prompt_ready, generated_prompt')
       .eq('id', id)
       .single()
 
@@ -35,7 +35,7 @@ export async function GET(
       data: {
         ready: data.prompt_ready,
         prompt: data.prompt_ready ? data.generated_prompt : undefined,
-        cancelled: data.cancelled || false,
+        cancelled: false,
       },
     })
   } catch (error) {
