@@ -308,6 +308,7 @@ async function createSession(context: MergedContext): Promise<TetonSession> {
 
 async function waitForPrompt(sessionId: string): Promise<string> {
   log('Waiting for user to edit canvas and click Send...')
+  log('(User can click Cancel in the browser to abort)')
 
   const startTime = Date.now()
 
@@ -321,11 +322,21 @@ async function waitForPrompt(sessionId: string): Promise<string> {
         log(`Poll error: ${response.status}`)
       } else {
         const result = await response.json()
+
+        // Check if user cancelled
+        if (result.success && result.data.cancelled) {
+          throw new Error('Session cancelled by user')
+        }
+
         if (result.success && result.data.ready && result.data.prompt) {
           return result.data.prompt
         }
       }
     } catch (err) {
+      // Re-throw cancellation errors
+      if (err instanceof Error && err.message === 'Session cancelled by user') {
+        throw err
+      }
       log('Poll error:', err)
     }
 

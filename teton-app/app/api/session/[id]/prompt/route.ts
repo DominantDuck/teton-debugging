@@ -3,7 +3,7 @@ import { createClient } from '@/lib/supabase/server'
 import type { ApiResponse, PromptPollResponse } from '@/types/api'
 
 // This endpoint is polled every 2 seconds by the MCP package
-// Keep it extremely fast - only read prompt_ready and generated_prompt
+// Keep it extremely fast - only read prompt_ready, generated_prompt, cancelled
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -14,7 +14,7 @@ export async function GET(
 
     const { data, error } = await supabase
       .from('sessions')
-      .select('prompt_ready, generated_prompt')
+      .select('prompt_ready, generated_prompt, cancelled')
       .eq('id', id)
       .single()
 
@@ -35,6 +35,7 @@ export async function GET(
       data: {
         ready: data.prompt_ready,
         prompt: data.prompt_ready ? data.generated_prompt : undefined,
+        cancelled: data.cancelled || false,
       },
     })
   } catch (error) {

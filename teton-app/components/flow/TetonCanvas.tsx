@@ -51,6 +51,7 @@ export default function TetonCanvas({
   )
   const [isSending, setIsSending] = useState(false)
   const [isSent, setIsSent] = useState(false)
+  const [isCancelled, setIsCancelled] = useState(false)
 
   const onConnect = useCallback(
     (connection: Connection) => {
@@ -91,6 +92,15 @@ export default function TetonCanvas({
     }
   }, [nodes, edges, onGeneratePrompt, isSending, isSent])
 
+  const handleCancel = useCallback(async () => {
+    try {
+      await fetch(`/api/session/${session.id}/cancel`, { method: 'POST' })
+      setIsCancelled(true)
+    } catch (error) {
+      console.error('Failed to cancel:', error)
+    }
+  }, [session.id])
+
   return (
     <div className="w-full h-full relative">
       <ReactFlow
@@ -121,12 +131,18 @@ export default function TetonCanvas({
       <CanvasToolbar
         onSend={handleSend}
         onAddNode={handleAddNode}
+        onCancel={handleCancel}
         isSending={isSending}
         isSent={isSent}
       />
 
-      {/* Status indicator when sent */}
-      {isSent && (
+      {/* Status indicator */}
+      {isCancelled && (
+        <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 bg-white rounded-lg shadow-md px-4 py-2 text-sm text-gray-600">
+          Cancelled. You can close this tab.
+        </div>
+      )}
+      {isSent && !isCancelled && (
         <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 bg-white rounded-lg shadow-md px-4 py-2 text-sm text-gray-600">
           Waiting for Claude Code to receive the prompt...
         </div>

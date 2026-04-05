@@ -24,6 +24,7 @@ export interface Session {
   edited_edges: FlowEdge[] | null
   generated_prompt: string | null
   prompt_ready: boolean
+  cancelled: boolean
   created_at: string
   updated_at: string
 }

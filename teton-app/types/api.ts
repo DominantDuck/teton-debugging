@@ -12,6 +12,7 @@ export interface CreateSessionResponse {
 export interface PromptPollResponse {
   ready: boolean
   prompt?: string
+  cancelled?: boolean
 }
 
 export interface GeneratePromptResponse {

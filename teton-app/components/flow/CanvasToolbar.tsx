@@ -3,6 +3,7 @@
 interface CanvasToolbarProps {
   onSend: () => Promise<void>
   onAddNode: () => void
+  onCancel: () => Promise<void>
   isSending: boolean
   isSent: boolean
 }
@@ -10,6 +11,7 @@ interface CanvasToolbarProps {
 export default function CanvasToolbar({
   onSend,
   onAddNode,
+  onCancel,
   isSending,
   isSent,
 }: CanvasToolbarProps) {
@@ -44,6 +46,15 @@ export default function CanvasToolbar({
 
         {/* Divider */}
         <div className="w-px h-8 bg-gray-200" />
+
+        {/* Cancel button */}
+        <button
+          onClick={onCancel}
+          disabled={isSent}
+          className="px-4 py-2 rounded-full text-sm text-gray-600 hover:bg-gray-100 transition-colors disabled:opacity-50"
+        >
+          Cancel
+        </button>
 
         {/* Send button */}
         <button
