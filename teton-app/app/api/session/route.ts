@@ -82,7 +82,7 @@ export async function POST(
       success: true,
       data: {
         sessionId: data.id,
-        url: `${baseUrl}/session/${data.id}`,
+        url: `${baseUrl.replace(/\/$/, '')}/session/${data.id}`,
       },
     })
   } catch (error) {
