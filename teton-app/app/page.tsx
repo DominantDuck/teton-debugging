@@ -110,17 +110,11 @@ export default function LandingPage() {
                 <span className="w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center text-sm font-medium">
                   1
                 </span>
-                <h3 className="font-semibold text-gray-900">Clone and build</h3>
+                <h3 className="font-semibold text-gray-900">Install the MCP server</h3>
               </div>
               <div className="bg-gray-900 rounded-xl p-4 font-mono text-sm overflow-x-auto">
                 <div className="text-gray-300">
-                  <span className="text-gray-500">$</span> git clone https://github.com/DominantDuck/teton-debugging.git
-                </div>
-                <div className="text-gray-300">
-                  <span className="text-gray-500">$</span> cd teton-debugging/teton-mcp
-                </div>
-                <div className="text-gray-300">
-                  <span className="text-gray-500">$</span> npm install && npm run build
+                  <span className="text-gray-500">$</span> npm install -g teton-mcp
                 </div>
               </div>
             </div>
@@ -139,15 +133,11 @@ export default function LandingPage() {
                 <pre className="text-gray-300">{`{
   "mcpServers": {
     "teton": {
-      "command": "node",
-      "args": ["<PATH>/teton-mcp/dist/index.js"]
+      "command": "teton-mcp"
     }
   }
 }`}</pre>
               </div>
-              <p className="text-xs text-gray-400 mt-3">
-                Replace <code className="bg-gray-100 px-1 rounded">&lt;PATH&gt;</code> with your actual path to teton-debugging
-              </p>
             </div>
 
             {/* Step 3 */}

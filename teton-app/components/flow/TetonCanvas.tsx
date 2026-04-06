@@ -23,6 +23,57 @@ interface TetonCanvasProps {
   onGeneratePrompt: (nodes: FlowNode[], edges: FlowEdge[]) => Promise<void>
 }
 
+function ShareButton() {
+  const [showCopied, setShowCopied] = useState(false)
+
+  const handleShare = useCallback(async () => {
+    const url = window.location.href
+    try {
+      await navigator.clipboard.writeText(url)
+      setShowCopied(true)
+      setTimeout(() => setShowCopied(false), 2000)
+    } catch {
+      const textArea = document.createElement('textarea')
+      textArea.value = url
+      document.body.appendChild(textArea)
+      textArea.select()
+      document.execCommand('copy')
+      document.body.removeChild(textArea)
+      setShowCopied(true)
+      setTimeout(() => setShowCopied(false), 2000)
+    }
+  }, [])
+
+  return (
+    <button
+      onClick={handleShare}
+      className="bg-white rounded-full shadow-lg px-4 py-2 flex items-center gap-2 hover:bg-gray-50 transition-colors relative"
+      title="Share"
+    >
+      <svg
+        className="w-4 h-4 text-gray-600"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
+        />
+      </svg>
+      <span className="text-sm font-medium text-gray-700">Share</span>
+      {showCopied && (
+        <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs px-3 py-1.5 rounded-lg whitespace-nowrap">
+          Link copied!
+          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-b-gray-900" />
+        </div>
+      )}
+    </button>
+  )
+}
+
 export default function TetonCanvas({
   session,
   onGeneratePrompt,
@@ -127,6 +178,11 @@ export default function TetonCanvas({
           color="#e5e5e5"
         />
       </ReactFlow>
+
+      {/* Share button - top right */}
+      <div className="absolute top-4 right-4 z-10">
+        <ShareButton />
+      </div>
 
       <CanvasToolbar
         onSend={handleSend}

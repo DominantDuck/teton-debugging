@@ -22,7 +22,6 @@ const log = (...args: unknown[]) => console.error('[teton]', ...args)
 
 const TETON_API_URL = process.env.TETON_API_URL || 'https://teton-app-alpha.vercel.app'
 const POLL_INTERVAL = 2000 // 2 seconds
-const POLL_TIMEOUT = 10 * 60 * 1000 // 10 minutes
 
 // ============================================================================
 // Codebase Scanner
@@ -310,9 +309,7 @@ async function waitForPrompt(sessionId: string): Promise<string> {
   log('Waiting for user to edit canvas and click Send...')
   log('(User can click Cancel in the browser to abort)')
 
-  const startTime = Date.now()
-
-  while (Date.now() - startTime < POLL_TIMEOUT) {
+  while (true) {
     try {
       const response = await fetch(
         `${TETON_API_URL}/api/session/${sessionId}/prompt`
@@ -342,8 +339,6 @@ async function waitForPrompt(sessionId: string): Promise<string> {
 
     await new Promise((resolve) => setTimeout(resolve, POLL_INTERVAL))
   }
-
-  throw new Error('Teton session timed out after 10 minutes')
 }
 
 function openBrowser(url: string): void {

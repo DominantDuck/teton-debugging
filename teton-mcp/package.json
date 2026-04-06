@@ -6,8 +6,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/aidengilmore/teton-mcp"
+    "url": "https://github.com/DominantDuck/teton-debugging"
   },
+  "homepage": "https://teton-app-alpha.vercel.app",
   "keywords": ["mcp", "claude", "debugger", "teton", "claude-code"],
   "type": "module",
   "main": "dist/index.js",
