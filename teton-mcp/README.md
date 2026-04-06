@@ -10,12 +10,6 @@ Teton transforms debugging from text-based back-and-forth into a visual, interac
 2. You edit the flowchart to show what *should* happen
 3. Claude receives a structured prompt and fixes the code
 
-## Installation
-
-```bash
-npm install -g teton-mcp
-```
-
 ## Setup
 
 Add Teton to your Claude Code configuration in `~/.claude.json`:
@@ -24,7 +18,8 @@ Add Teton to your Claude Code configuration in `~/.claude.json`:
 {
   "mcpServers": {
     "teton": {
-      "command": "teton-mcp"
+      "command": "npx",
+      "args": ["teton-mcp"]
     }
   }
 }
@@ -36,18 +31,14 @@ Then restart Claude Code:
 claude
 ```
 
+No installation needed. npx downloads and runs it automatically.
+
 ## Usage
 
 When debugging with Claude Code, just say:
 
 ```
 debug with Teton
-```
-
-Or use the slash command:
-
-```
-/teton
 ```
 
 Teton will:
@@ -58,7 +49,7 @@ Teton will:
 
 ## Requirements
 
-- Node.js 20+
+- Node.js 18+
 - Claude Code
 
 ## License

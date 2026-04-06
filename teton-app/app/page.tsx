@@ -100,7 +100,7 @@ export default function LandingPage() {
             Setup
           </h2>
           <p className="text-gray-500 text-center mb-12">
-            One-time setup, takes about 2 minutes
+            One-time setup, takes 30 seconds
           </p>
 
           <div className="space-y-8">
@@ -110,21 +110,6 @@ export default function LandingPage() {
                 <span className="w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center text-sm font-medium">
                   1
                 </span>
-                <h3 className="font-semibold text-gray-900">Install the MCP server</h3>
-              </div>
-              <div className="bg-gray-900 rounded-xl p-4 font-mono text-sm overflow-x-auto">
-                <div className="text-gray-300">
-                  <span className="text-gray-500">$</span> npm install -g teton-mcp
-                </div>
-              </div>
-            </div>
-
-            {/* Step 2 */}
-            <div className="bg-gray-50 rounded-2xl p-6">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center text-sm font-medium">
-                  2
-                </span>
                 <h3 className="font-semibold text-gray-900">
                   Add to <code className="bg-gray-200 px-1.5 py-0.5 rounded text-sm">~/.claude.json</code>
                 </h3>
@@ -133,18 +118,22 @@ export default function LandingPage() {
                 <pre className="text-gray-300">{`{
   "mcpServers": {
     "teton": {
-      "command": "teton-mcp"
+      "command": "npx",
+      "args": ["teton-mcp"]
     }
   }
 }`}</pre>
               </div>
+              <p className="text-xs text-gray-400 mt-3">
+                No installation needed. npx downloads and runs it automatically.
+              </p>
             </div>
 
-            {/* Step 3 */}
+            {/* Step 2 */}
             <div className="bg-gray-50 rounded-2xl p-6">
               <div className="flex items-center gap-3 mb-4">
                 <span className="w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center text-sm font-medium">
-                  3
+                  2
                 </span>
                 <h3 className="font-semibold text-gray-900">Restart Claude Code</h3>
               </div>

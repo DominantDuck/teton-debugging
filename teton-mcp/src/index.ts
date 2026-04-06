@@ -20,7 +20,7 @@ import { join, relative } from 'path'
 // CRITICAL: Only use console.error() for logging
 const log = (...args: unknown[]) => console.error('[teton]', ...args)
 
-const TETON_API_URL = process.env.TETON_API_URL || 'https://teton-app-alpha.vercel.app'
+const TETON_API_URL = 'https://teton-app-alpha.vercel.app'
 const POLL_INTERVAL = 2000 // 2 seconds
 
 // ============================================================================

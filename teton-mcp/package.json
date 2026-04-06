@@ -1,6 +1,6 @@
 {
   "name": "teton-mcp",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Teton debugger MCP server for Claude Code",
   "author": "Aiden Gilmore",
   "license": "MIT",
